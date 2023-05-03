@@ -1,11 +1,17 @@
 from flask import Flask, render_template
-from mods.database import all_users
+from auth.auth import auth
+from patient.analytics import patient_analytics
 
 app = Flask(__name__)
 
-rows = all_users()
+app.register_blueprint(auth)
+app.register_blueprint(patient_analytics)
 
 
-@app.route('/')
-def home():
-    return render_template("index.html", rows=rows)
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+
+if __name__ == "__main__":
+    app.run()
