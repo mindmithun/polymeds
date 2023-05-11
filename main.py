@@ -3,12 +3,16 @@ from auth.auth import auth
 from patient.analytics import patient_analytics
 
 app = Flask(__name__)
+app.secret_key = 'TODO:change this'
+
 
 app.register_blueprint(auth)
 app.register_blueprint(patient_analytics)
 
 
 @app.route("/")
+@app.route("/home")
+@app.route("/index")
 def index():
     return render_template("index.html")
 

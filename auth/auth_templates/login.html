@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "auth_base.html" %}
 
     {% block title %}
     Login
@@ -17,4 +17,9 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+  {% if error %}
+  <div class="alert alert-danger" role="alert">
+    {{error}}
+  </div>
+  {% endif %}
 {% endblock %}
