@@ -5,6 +5,28 @@
 {% endblock %}
 
 {% block pagecontents %}
-    <h1>Cat To Cond</h1>
-    {{ rows[0]}}
+    <div class="ddown">
+        <select name="categories" id="categories">
+            <option value="0">Select Category</option>
+                {% for cat in cats %}
+                    <option value="{{ cat['key'] }}">{{ cat["category"] }}</option>
+                {% endfor %}
+        </select>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <thead>Key</thead>
+                <thead>Category</thead>
+            </tr>
+
+            {% for cond in conds %}
+                <tr>
+                    <td>{{ cond["categoryid"] }}</td>
+                    <td>{{ cond["medicalcondition"] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}
