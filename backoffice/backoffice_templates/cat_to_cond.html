@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block pagecontents %}
-    <div class="ddown">
+   <form action="/cat_to_cond" method="post">
+     <div class="ddown">
         <select name="categories" id="categories">
             <option value="0">Select Category</option>
                 {% for cat in cats %}
@@ -13,20 +14,15 @@
                 {% endfor %}
         </select>
     </div>
-
+<br>
     <div>
-        <table>
-            <tr>
-                <thead>Key</thead>
-                <thead>Category</thead>
-            </tr>
+        
+        {% for cond in conds %}
+                <input type="checkbox" name="conditions" value="{{cond['key']}}" id="conditions"> {{ cond["medicalcondition"] }}
+                <br>
+        {% endfor %}
 
-            {% for cond in conds %}
-                <tr>
-                    <td>{{ cond["categoryid"] }}</td>
-                    <td>{{ cond["medicalcondition"] }}</td>
-                </tr>
-            {% endfor %}
-        </table>
     </div>
+        <button type="submit">Submit</button>
+   </form>
 {% endblock %}

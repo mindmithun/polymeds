@@ -40,7 +40,7 @@ def get_all_conditions():
     con = sqlite3.connect("./databases/diseases.db")
     con.row_factory = sqlite3.Row
     cur = con.cursor()
-    cur.execute("select * from conditions")
+    cur.execute("select * from conditions  where categoryid=0")
     rows = cur.fetchall()
     con.close()
     return rows
