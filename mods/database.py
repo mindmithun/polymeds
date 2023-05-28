@@ -44,3 +44,16 @@ def get_all_conditions():
     rows = cur.fetchall()
     con.close()
     return rows
+
+def link_cat_to_cond(cat, cond):
+    con = sqlite3.connect("./databases/diseases.db")
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    cnd = tuple(cond)
+    qry = "update conditions set categoryid={} where key in {}".format(cat,cnd)
+    print(qry)
+    s_flag = cur.execute(qry).rowcount
+    con.commit()
+    con.close()
+    error = str(s_flag) + " rows affected"
+    return error
