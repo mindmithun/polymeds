@@ -7,24 +7,32 @@ c_to_c = Blueprint("c_to_c", __name__, template_folder="backoffice_templates")
 
 @c_to_c.route("/cat_to_cond" , methods=["GET", "POST"])
 def cat_to_cond():    
-    # TODO:Change all redirect to render_template
-    # TODO: Sort out cat empty scenario
     if request.method == "POST":
-        cat_id = request.form["categories"]
+        cat_id = int(request.form["categories"])
         cond_id = request.form.getlist("conditions")
         print(cat_id)
+        print(type(cat_id))
         print(cond_id)
+        print(len(cond_id))
         if cat_id == 0:
             print("cat 0")
-            return redirect(url_for(".cat_to_cond", error="Select a category"))
-        if cond_id == []:
+            cats = database.get_all_categories()
+            conds = database.get_all_conditions()
+            return render_template("cat_to_cond.html",cats=cats,conds=conds,error="Please select a category")
+
+        if len(cond_id) == 0:
             print("cond 0")
-            return redirect(url_for(".cat_to_cond", error="Select a condition"))
-        sflag=database.link_cat_to_cond(cat_id, cond_id)
-        print(sflag)
-        return redirect(url_for(".cat_to_cond", error=sflag))
-        
-        return redirect(url_for(".cat_to_cond", error="success"))
+            cats = database.get_all_categories()
+            conds = database.get_all_conditions()
+            return render_template("cat_to_cond.html",cats=cats,conds=conds,error="Please select a condition")
+
+        if (cat_id != 0) and (len(cond_id) != 0):
+            sflag = database.link_cat_to_cond(cat_id, cond_id)
+            print(sflag)
+            cats = database.get_all_categories()
+            conds = database.get_all_conditions()
+            return render_template("cat_to_cond.html",cats=cats,conds=conds,error=sflag)
+    
     cats = database.get_all_categories()
-    conds=database.get_all_conditions()
+    conds = database.get_all_conditions()
     return render_template("cat_to_cond.html",cats=cats,conds=conds,error="None")
