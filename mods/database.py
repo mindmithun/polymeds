@@ -56,4 +56,4 @@ def link_cat_to_cond(cat, cond):
     con.commit()
     con.close()
     error = str(s_flag) + " rows affected"
-    return error
+    return error  

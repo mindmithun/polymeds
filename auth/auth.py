@@ -44,7 +44,7 @@ def login():
         if not ses:
             return render_template("login.html", error = "Error creating session")
         
-        return redirect(url_for("patient_analytics.patient_dashboard"))
+        return redirect(url_for("patient_home.patient_dashboard"))
     else:
         #TODO: Rewrite Logic of this later. Unreachable code.
         return "404 Page Not Found"
