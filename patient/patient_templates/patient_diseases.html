@@ -10,4 +10,13 @@
 
     {{session['username']}}
 
+    <div class="container">
+        <select name="categories" id="categories">
+            <option value="0">Select Category</option>
+                {% for cat in cats %}
+                    <option value="{{ catgroup }}">{{ cat["catgroup"] }}</option>
+                {% endfor %}
+        </select>
+    </div>
+{{error}}
 {% endblock %}

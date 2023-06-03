@@ -8,7 +8,10 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href={{ url_for(".patient_dashboard")}}>Dashboard</a>
+            <a class="nav-link active" aria-current="page" href={{ url_for("patient_conditions.patient_diseases")}}>Diseases</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href={{ url_for("patient_home.patient_dashboard")}}>Dashboard</a>
           </li>
           <li class="nav-item mr-5">
             <a class="nav-link active" aria-current="page" href={{ url_for("auth.logout")}}>Log-Out</a>

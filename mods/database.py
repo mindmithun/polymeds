@@ -30,10 +30,10 @@ def get_all_categories():
     con = sqlite3.connect("./databases/diseases.db")
     con.row_factory = sqlite3.Row
     cur = con.cursor()
-    cur.execute("select * from categories")
-    rows = cur.fetchall()
+    cur.execute("select distinct catgroup from medplus WHERE isDeleted = 0")
+    cat_rows = cur.fetchall()
     con.close()
-    return rows
+    return cat_rows
 
 
 def get_all_conditions():
