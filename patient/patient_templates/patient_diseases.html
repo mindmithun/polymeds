@@ -11,12 +11,34 @@
     {{session['username']}}
 
     <div class="container">
-        <select name="categories" id="categories">
-            <option value="0">Select Category</option>
-                {% for cat in cats %}
-                    <option value="{{ catgroup }}">{{ cat["catgroup"] }}</option>
+        <form action="/patient_diseases" method="post">
+            <div>
+                <select name="categories" id="categories">
+                    <option value="0">Select Category</option>
+                        {% for cat in cats %}
+                            <option value="{{ cat['catgroup'] }}">{{ cat["catgroup"] }}</option>
+                        {% endfor %}
+                </select>
+            </div>
+            <div>
+                <button name="search" type="submit">Search</button>
+            </div>
+            <div>
+                {% for c in cond %}
+
+                    <table>
+                        <tr>
+                            <td>{{ c["key"] }}</td>
+                            <td>{{ c["title"] }}</td>
+                            <td>{{ c["alsocalled"] }}</td>
+                            <td>{{ c["metadesc"] }}</td>
+                        </tr>
+                    </table>
+
+
                 {% endfor %}
-        </select>
+            </div>
+        </form>
     </div>
 {{error}}
 {% endblock %}

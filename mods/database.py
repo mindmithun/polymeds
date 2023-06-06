@@ -36,15 +36,6 @@ def get_all_categories():
     return cat_rows
 
 
-def get_all_conditions():
-    con = sqlite3.connect("./databases/diseases.db")
-    con.row_factory = sqlite3.Row
-    cur = con.cursor()
-    cur.execute("select * from conditions  where categoryid=0")
-    rows = cur.fetchall()
-    con.close()
-    return rows
-
 def link_cat_to_cond(cat, cond):
     con = sqlite3.connect("./databases/diseases.db")
     con.row_factory = sqlite3.Row
@@ -56,4 +47,16 @@ def link_cat_to_cond(cat, cond):
     con.commit()
     con.close()
     error = str(s_flag) + " rows affected"
-    return error  
+    return error
+
+
+def get_conditions(category):
+    print(category)
+    con = sqlite3.connect("./databases/diseases.db")
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    qry ="select key, title, alsocalled, metadesc from medplus WHERE catgroup = '{}' AND isDeleted = 0".format(category)
+    cur.execute(qry)
+    cond_rows = cur.fetchall()
+    con.close()
+    return cond_rows
