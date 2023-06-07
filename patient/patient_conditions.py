@@ -7,6 +7,8 @@ Patient_cond = Blueprint("patient_conditions", __name__, template_folder="patien
 def patient_diseases():
     if request.method == 'POST':
         categories= request.form['categories']
+        cond_ids = request.form.getlist('cond_key')
+        print(cond_ids)
         cond=database.get_conditions(category=categories)
         cats = database.get_all_categories()
         if not cond:

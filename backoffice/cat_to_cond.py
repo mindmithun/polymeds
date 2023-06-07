@@ -10,10 +10,6 @@ def cat_to_cond():
     if request.method == "POST":
         cat_id = int(request.form["categories"])
         cond_id = request.form.getlist("conditions")
-        print(cat_id)
-        print(type(cat_id))
-        print(cond_id)
-        print(len(cond_id))
         if cat_id == 0:
             print("cat 0")
             cats = database.get_all_categories()

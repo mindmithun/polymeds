@@ -16,7 +16,7 @@
                 <select name="categories" id="categories">
                     <option value="0">Select Category</option>
                         {% for cat in cats %}
-                            <option value="{{ cat['catgroup'] }}">{{ cat["catgroup"] }}</option>
+                            <option value="{{ cat['categories'] }}">{{ cat["categories"] }}</option>
                         {% endfor %}
                 </select>
             </div>
@@ -29,14 +29,15 @@
                     <table>
                         <tr>
                             <td>{{ c["key"] }}</td>
-                            <td>{{ c["title"] }}</td>
-                            <td>{{ c["alsocalled"] }}</td>
-                            <td>{{ c["metadesc"] }}</td>
+                            <td><input type="checkbox" id="{{ c['key'] }}" name="cond_key" value="{{ c['key'] }}">
+                                <label for="{{ c['key'] }}"> {{ c["conditions"] }}</label><br></td>
+
                         </tr>
                     </table>
-
-
                 {% endfor %}
+            </div>
+            <div>
+                <button name="submit" type="submit">Submit</button>
             </div>
         </form>
     </div>
